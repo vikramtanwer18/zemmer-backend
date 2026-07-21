@@ -1,0 +1,11 @@
+model Attendance {
+  id          String   @id @default(uuid())
+  gym_id      String
+  member_id   String
+  checked_in  DateTime @default(now())
+  checked_out DateTime?
+  durationMinutes Int?
+  method      String   // QR | MANUAL | BIOMETRIC
+  nonce       String   @unique  // prevents QR replay
+  member      Member   @relation(fields: [member_id],references: [id],onDelete: Cascade)
+}

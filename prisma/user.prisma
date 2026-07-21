@@ -1,0 +1,21 @@
+model User {
+  id            String   @id @default(uuid())
+  gym_id        String?  // null for platform-level users (ADMIN); set for OWNER/TRAINER/COACH/MEMBER
+  email         String   @unique
+  phone         String?
+  password_hash String
+  isVerified    Boolean
+  otp           String?  @unique
+  expiresAt     DateTime?
+  role          Role     // OWNER | TRAINER | COACH | MEMBER | ADMIN
+  refreshToken  String?
+  gym           Gym?     @relation(fields: [gym_id], references: [id])
+  member        Member?
+  staffProfile  StaffMember?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@unique([gym_id, email])
+  @@index([gym_id, phone])
+  @@index([gym_id, role])
+}

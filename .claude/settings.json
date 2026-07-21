@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Dell/my-projects/gym_os_frontend/lib/validators/**)"
+    ]
+  }
+}

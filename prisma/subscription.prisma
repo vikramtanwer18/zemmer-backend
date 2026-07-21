@@ -1,0 +1,46 @@
+model Subscription {
+  id                     String   @id @default(uuid())
+  gym_id                 String   @unique
+  saas_plan_id           String
+  status                 SubscriptionStatus @default(TRIALING)
+
+  // Trial window
+  trialStartedAt         DateTime?
+  trialEndsAt            DateTime?
+
+  // Paid period window
+  currentPeriodStart     DateTime?
+  currentPeriodEnd       DateTime?
+  cancelAtPeriodEnd      Boolean  @default(false)
+  cancelledAt            DateTime?
+
+  // Razorpay identifiers
+  razorpaySubscriptionId String?  @unique
+  razorpayCustomerId     String?
+  razorpayOrderId        String?
+  razorpayPaymentId      String?
+
+  // Grace period tracking
+  gracePeriodStartedAt   DateTime?
+  retryCount             Int      @default(0)
+  lastRetryAt            DateTime?
+
+  // Scheduled plan changes (for end-of-cycle downgrades)
+  scheduledPlanChange    Json?
+
+  // Email reminder dedupe
+  lastReminderSentAt     DateTime?
+
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
+
+  gym                    Gym       @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+  saasPlan               SaasPlan  @relation(fields: [saas_plan_id], references: [id])
+  invoices               BillingInvoice[]
+  auditLogs              SubscriptionAuditLog[]
+
+  @@index([status, trialEndsAt])
+  @@index([status, currentPeriodEnd])
+  @@index([saas_plan_id])
+  @@index([razorpaySubscriptionId])
+}

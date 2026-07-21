@@ -1,0 +1,21 @@
+model Member{
+  id          String       @id @default(uuid())
+  gym_id      String
+  lead_id     String?      // if the member is converted from a lead
+  user_id     String?      @unique  // links to login User row (null = walk-in member with no app login)
+  name        String
+  dob         DateTime?
+  gender      Sex
+  joined_on   DateTime     @default(now())
+  notes       String?      // optional referral / staff note
+  status      MemberStatus // ACTIVE | SUSPENDED | CHURNED
+  memberships Membership[]
+  attendances Attendance[]
+  invoices    Invoice[]
+  bookings    Booking[]
+  lead        Lead?        @relation(fields: [lead_id], references: [id], onDelete: SetNull)
+  gym         Gym          @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+  user        User?        @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@index([gym_id])
+}

@@ -1,0 +1,13 @@
+model LeadFollowup {
+  id          String   @id @default(uuid())
+  gym_id      String
+  lead_id     String
+  followup_at DateTime
+  is_done     Boolean  @default(false)
+  note        String?
+  created_at  DateTime @default(now())
+  lead        Lead     @relation(fields: [lead_id], references: [id], onDelete: Cascade)
+
+  @@index([gym_id, is_done, followup_at])
+  @@index([lead_id])
+}

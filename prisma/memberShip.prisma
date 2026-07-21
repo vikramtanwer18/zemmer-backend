@@ -1,0 +1,16 @@
+model Membership {
+  id           String    @id @default(uuid())
+  gym_id       String
+  member_id    String
+  plan_id      String
+  start_date   DateTime
+  end_date     DateTime
+  status       MshipStatus // ACTIVE | FROZEN | EXPIRED | SUSPENDED
+  freezes      MembershipFreeze[]
+  member       Member    @relation(fields: [member_id], references: [id], onDelete: Cascade)
+  plan         Plan      @relation(fields: [plan_id], references: [id], onDelete: Restrict)
+
+  @@index([gym_id, end_date])
+  @@index([member_id])
+  @@index([plan_id])
+}

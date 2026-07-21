@@ -1,0 +1,18 @@
+model SaasPlan{
+ id                 String @id @default(uuid())
+ key                SaasPlanKey @unique // TRIAL | PRO | ELITE
+ name               String
+ monthlyPricePaise  Int
+ annualPricePaise   Int
+ maxMembers         Int // -1 = unlimited
+ maxStaffUsers      Int
+ maxClassesPerMonth Int
+ featureFlags       Json // { lead_pipeline: true, multi_branch: false, ... }
+ rzpPlanIdMonthly   String? // Razorpay plan ID
+ rzpPlanIdAnnual    String?
+ isActive           Boolean @default(true)
+ createdAt          DateTime @default(now())
+ updatedAt          DateTime @updatedAt
+ gyms               Gym[]
+ subscriptions      Subscription[]
+}

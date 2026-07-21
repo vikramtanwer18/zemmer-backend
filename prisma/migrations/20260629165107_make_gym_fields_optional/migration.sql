@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "Gym" ADD COLUMN     "description" TEXT,
+ADD COLUMN     "phone" TEXT,
+ADD COLUMN     "website" TEXT,
+ALTER COLUMN "address" DROP NOT NULL,
+ALTER COLUMN "city" DROP NOT NULL,
+ALTER COLUMN "noOfBranches" DROP NOT NULL,
+ALTER COLUMN "noOfMembers" DROP NOT NULL,
+ALTER COLUMN "noOfMembers" SET DEFAULT 0;

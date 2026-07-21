@@ -1,0 +1,18 @@
+model BillingInvoice {
+  id                String   @id @default(uuid())
+  subscription_id   String
+  amount_paise      Int
+  currency          String   @default("INR")
+  status            BillingInvoiceStatus
+  razorpayPaymentId String?  @unique
+  razorpayOrderId   String?
+  paid_at           DateTime?
+  failed_at         DateTime?
+  failure_reason    String?
+  created_at        DateTime @default(now())
+
+  subscription Subscription @relation(fields: [subscription_id], references: [id], onDelete: Cascade)
+
+  @@index([subscription_id, created_at])
+  @@index([status])
+}

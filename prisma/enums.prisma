@@ -1,0 +1,81 @@
+enum Role {
+  OWNER
+  TRAINER
+  COACH
+  MEMBER
+  ADMIN
+}
+
+enum MemberStatus{
+     ACTIVE 
+     SUSPENDED 
+     CHURNED  //The rate at which customers stop subscribing to, purchasing, or using a company’s products or services over a specific period
+}
+
+enum MshipStatus{
+    ACTIVE 
+    FROZEN 
+    EXPIRED 
+    SUSPENDED
+}
+
+enum InvoiceStatus{
+    PENDING
+    PAID 
+    FAILED
+    REFUNDED
+}
+
+enum BookingStatus{
+    CONFIRMED
+    WAITLISTED
+    CANCELLED
+}
+
+enum LeadStage{
+    NEW 
+    CONTACTED
+    TRIAL
+    NEGOTIATION
+    WON
+    LOST
+}
+
+enum LeadSource {
+  WALK_IN
+  WEBSITE
+  INSTAGRAM
+  REFERRAL
+}
+
+enum Sex{
+    MALE
+    FEMALE
+    OTHERS
+}
+
+enum InstructorType{
+    TRAINER
+    COACH
+}
+
+enum SubscriptionStatus {
+    TRIALING       // free trial active
+    ACTIVE         // paid, current period
+    PAST_DUE       // payment failed, in grace period
+    EXPIRED        // trial ended without payment OR grace ran out
+    CANCELLED      // owner cancelled, access until current_period_end
+}
+
+enum BillingInvoiceStatus {
+    PAID
+    FAILED
+    REFUNDED
+    PENDING
+}
+
+enum SaasPlanKey {
+    TRIAL
+    PRO
+    ELITE
+}

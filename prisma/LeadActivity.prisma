@@ -1,0 +1,13 @@
+model LeadActivity {
+  id         String   @id @default(uuid())
+  gym_id     String
+  lead_id    String
+  done_by    String
+  type       String   // NOTE | CALL | STAGE_CHANGE | CONVERTED
+  payload    Json
+  created_at DateTime @default(now())
+  lead       Lead     @relation(fields: [lead_id], references: [id], onDelete: Cascade)
+
+  @@index([gym_id, lead_id])
+  @@index([lead_id, created_at])
+}

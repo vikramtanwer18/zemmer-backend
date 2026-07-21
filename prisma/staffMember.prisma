@@ -1,0 +1,19 @@
+model StaffMember {
+    id          String   @id @default(uuid())
+    gym_id      String
+    user_id     String?  @unique  // links to login User row (TRAINER or COACH role)
+    name        String
+    address     String
+    dob         DateTime
+    sex         Sex      // MALE | FEMALE | OTHERS
+    hourlyPrice Int      // in smallest currency unit (paisa / cents)
+    bio         String?
+    certificate String?  // URL or file path to the uploaded certificate
+    created_at  DateTime @default(now())
+    updated_at  DateTime @updatedAt
+    gym         Gym      @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+    user        User?    @relation(fields: [user_id], references: [id], onDelete: SetNull)
+    classes     Class[]
+
+    @@index([gym_id])
+}

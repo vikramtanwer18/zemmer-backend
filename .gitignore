@@ -1,0 +1,17 @@
+node_modules
+# Keep environment variables out of version control
+
+/src/generated/prisma
+
+# User-uploaded files (keep folder structure via .gitkeep)
+uploads/**
+!uploads/
+!uploads/**/
+!uploads/**/.gitkeep
+
+# Documentation files (generated during development)
+*.md
+!README.md
+
+saas-plan-management-guide.pdf
+config.bat

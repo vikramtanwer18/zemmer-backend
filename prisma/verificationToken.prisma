@@ -1,0 +1,10 @@
+// model VerificationToken {
+//   id        String   @id @default(uuid())
+//   otp       String   @unique
+//   userId    String
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   expiresAt DateTime
+//   createdAt DateTime @default(now())
+
+//   @@index([otp]) // Crucial for fast lookups when the user clicks the link
+// }

@@ -1,0 +1,9 @@
+model MembershipFreeze {
+  id             String   @id @default(uuid())
+  gym_id         String
+  membership_id  String
+  from_date      DateTime
+  duration_days  Int
+  reason         String?
+  membership     Membership @relation(fields: [membership_id], references: [id], onDelete: Cascade)
+}

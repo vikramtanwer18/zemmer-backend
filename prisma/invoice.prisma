@@ -1,0 +1,12 @@
+model Invoice {
+  id            String    @id @default(uuid())
+  gym_id        String
+  member_id     String
+  amount_paise  Int
+  status        InvoiceStatus // PENDING | PAID | FAILED | REFUNDED
+  due_date      DateTime
+  grace_days    Int       @default(3)
+  razorpay_order_id String?
+  paid_at       DateTime?
+  member        Member    @relation(fields: [member_id], references: [id], onDelete: Cascade)
+}  

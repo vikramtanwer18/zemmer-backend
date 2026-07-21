@@ -1,0 +1,16 @@
+model Class {
+  id          String   @id @default(uuid())
+  gym_id      String
+  name        String   // "HIIT 6PM"
+  trainer_id  String
+  starts_at   DateTime
+  ends_at     DateTime
+  capacity    Int
+  description String
+  bookings    Booking[]
+  gym         Gym         @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+  trainer     StaffMember @relation(fields: [trainer_id], references: [id], onDelete: Restrict)
+
+  @@index([gym_id, starts_at])
+  @@index([trainer_id])
+}

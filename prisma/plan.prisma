@@ -1,0 +1,13 @@
+model Plan {             // Gym's own membership plans (not the SaaS plan)
+  id              String  @id @default(uuid())
+  gym_id          String
+  name            String  // "Quarterly", "Annual + PT"
+  price           Int
+  duration_days   Int
+  description     String?
+  max_freeze_days Int     @default(0)
+  gym             Gym     @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+  memberships     Membership[]
+  @@unique([gym_id, name])
+  @@index([gym_id])
+}

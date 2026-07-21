@@ -1,0 +1,9 @@
+model Payment {
+  id                  String   @id @default(uuid())
+  gym_id              String
+  invoice_id          String
+  razorpay_payment_id String   @unique
+  amount_paise        Int
+  method              String   // upi | card | cash
+  captured_at         DateTime
+}

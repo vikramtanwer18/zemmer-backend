@@ -1,0 +1,29 @@
+model Gym {
+    id              String   @id @default(uuid())
+    name            String
+    subdomain       String?   @unique
+    address         String?
+    city            String?
+    noOfBranches    Int?
+    noOfMembers     Int? @default(0)
+    description     String?
+    phone           String?
+    website         String?
+    logoUrl         String?
+    coverImageUrl   String?
+    saasPlanId      String?
+    created_at      DateTime @default(now())
+    updated_at      DateTime @updatedAt
+    users           User[]  //Owner /Trainer
+    members         Member[]
+    plans           Plan[]
+    staff           StaffMember[]
+    classes         Class[]
+    bookings        Booking[]
+    leads           Lead[]
+    saasPlan        SaasPlan? @relation(fields: [saasPlanId], references: [id], onDelete: SetNull)
+    subscription    Subscription?
+
+    @@index([saasPlanId])
+}
+

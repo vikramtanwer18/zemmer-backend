@@ -1,0 +1,44 @@
+{
+  "name": "gym-management",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node init && node src/index.js",
+    "dev": "node init && nodemon src/index.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:seed": "node prisma/seed.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.7.0",
+    "@prisma/client": "^7.7.0",
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cookies": "^0.9.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "joi": "^18.1.2",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.1.1",
+    "node-cron": "^4.2.1",
+    "nodemon": "^3.1.14",
+    "razorpay": "^2.9.8",
+    "resend": "^6.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/pg": "^8.20.0",
+    "pdfkit": "^0.18.0",
+    "prisma": "^7.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,21 @@
+model Lead {
+  id         String   @id @default(uuid())
+  gym_id     String
+  name       String
+  phone      String
+  email      String?
+  source     LeadSource
+  stage      LeadStage @default(NEW) // NEW | CONTACTED | TRIAL | NEGOTIATION | WON | LOST
+  assignedTo String?
+  notes      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  gym        Gym      @relation(fields: [gym_id], references: [id], onDelete: Cascade)
+  activities LeadActivity[]
+  followups  LeadFollowup[]
+  members    Member[]
+
+  @@index([gym_id, stage])
+  @@index([gym_id, phone])
+  @@index([assignedTo])
+}
